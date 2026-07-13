@@ -1,0 +1,367 @@
+/* =========================================================
+   SERVICES LAYOUT
+========================================================= */
+
+.services {
+    position: relative;
+    background: var(--black);
+    color: #fff;
+    padding: 120px 0 0 0;
+    overflow: hidden;
+    background-image: url("image/service-bg.png");
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: contain;
+}
+
+.services-top{
+    display:grid;
+    grid-template-columns:1fr 460px 1fr;
+    gap:20px;
+    align-items:top;
+}
+
+.services-left,
+.services-right{
+    display:flex;
+    align-items:top;
+}
+
+.services-intro{
+    font-size:clamp(1.4rem,2vw,2rem);
+    line-height:1.5;
+    max-width:420px;
+}
+
+.services-outro{
+    font-size:1rem;
+    line-height:1.8;
+    color:#B6B6B6;
+    max-width:300px;
+    margin-left:auto;
+}
+
+/* =========================================================
+   CARD STACK
+========================================================= */
+
+.service-stack{
+
+    position:relative;
+
+    width:420px;
+
+    height:500px;
+
+    margin:auto;
+
+}
+
+/* Every card */
+
+.service-card{
+
+    position:absolute;
+
+    inset:0;
+
+    border-radius:0;
+
+    transition:
+
+        transform .75s cubic-bezier(.22,.61,.36,1),
+
+        opacity .6s,
+
+        box-shadow .6s,
+
+        background .6s;
+
+    will-change:transform;
+
+    overflow:hidden;
+
+}
+
+/* =========================================================
+   FRONT CARD
+========================================================= */
+
+.service-card-front{
+
+    background:#F16A22;
+
+    z-index:3;
+
+    transform:
+
+        translate(18px,10px)
+
+        rotate(0deg)
+
+        scale(1);
+
+    box-shadow:
+
+        0 40px 80px rgba(0,0,0,.30);
+
+}
+
+/* =========================================================
+   MIDDLE CARD
+========================================================= */
+
+.service-card-middle{
+
+    background:#3D57F5;
+
+    z-index:2;
+
+    transform:
+
+        rotate(12deg)
+
+        scale(.97);
+
+}
+
+/* =========================================================
+   BACK CARD
+========================================================= */
+
+.service-card-back{
+
+    background:#FFD247;
+
+    z-index:1;
+
+    transform:
+        translate(-8px,-18px)
+
+        rotate(-0deg)
+
+        scale(.94);
+
+}
+
+/* =========================================================
+   CARD CONTENT
+========================================================= */
+
+.service-card-inner{
+
+    padding:38px;
+
+    height:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.service-number{
+
+    display:block;
+
+    font-size:34px;
+
+    font-weight:700;
+
+    margin-bottom:10px;
+
+    font-family:var(--font-display);
+
+}
+
+.service-title{
+
+    font-size:2.15rem ;
+
+    line-height:1.1;
+
+    margin-bottom:22px;
+
+    font-family:var(--font-display);
+
+}
+
+.service-description{
+
+    font-size:18px;
+
+    line-height:1.7;
+
+    font-size:1.25rem;
+    font-weight:500;
+    margin-bottom:16px;
+
+
+}
+
+.service-list{
+
+    padding:0;
+
+    margin:0;
+
+    list-style:none;
+
+}
+
+.service-list li{
+
+    position:relative;
+
+    padding-left:18px;
+
+    margin-bottom:4px;
+
+    font-size:1.15rem;
+    font-weight:500;
+
+    line-height:1.5;
+
+}
+
+.service-list li::before{
+
+    content:"•";
+
+    position:absolute;
+
+    left:0;
+
+}
+
+/* =========================================================
+   TEXT ANIMATION
+========================================================= */
+
+.service-number,
+.service-title,
+.service-description,
+.service-list{
+
+    transition:
+
+        opacity .45s ease,
+
+        transform .45s ease;
+
+}
+
+.service-card.changing .service-number,
+.service-card.changing .service-title,
+.service-card.changing .service-description,
+.service-card.changing .service-list{
+
+    opacity:0;
+    transform:translateY(-16px);
+
+}
+
+
+/* .service-card-front.changing{
+    z-index:3;
+    transform:translate(-16px,-18px) rotate(-24deg) scale(.97);
+}
+
+.service-card-middle.changing{
+    z-index:2;
+    transform:translate(-32px,-36px) rotate(-48deg) scale(.94);
+}
+
+.service-card-back.changing{
+    z-index:1;
+    transform:translate(0,0) rotate(0deg) scale(1);
+} */
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width:1100px){
+
+.services-top{
+
+grid-template-columns:1fr;
+
+gap:60px;
+
+}
+
+.services-left,
+.services-right{
+
+justify-content:center;
+
+text-align:center;
+
+}
+
+.services-outro{
+
+margin:auto;
+
+}
+
+.service-stack{
+
+width:400px;
+
+height:540px;
+
+}
+
+}
+
+@media (max-width:768px){
+
+.services{
+
+padding:80px 0;
+
+}
+
+.service-stack{
+
+width:100%;
+
+max-width:340px;
+
+height:470px;
+
+}
+
+.service-card-inner{
+
+padding:28px;
+
+}
+
+.service-number{
+
+font-size:26px;
+
+}
+
+.service-title{
+
+font-size:32px;
+
+}
+
+.service-description{
+
+font-size:16px;
+
+}
+
+.service-list li{
+
+font-size:15px;
+
+}
+
+}

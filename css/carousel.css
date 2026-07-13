@@ -1,0 +1,183 @@
+/* =========================================================
+   WORK CAROUSEL — standalone, no external dependencies
+   Drop carousel.html / carousel.css / carousel.js into any
+   project. Replace the fonts/colors in :root to match yours.
+========================================================= */
+
+:root{
+  --wc-ink:        #14130f;
+  --wc-muted:      #5c5a4e;
+  --wc-bg:         #f4f2ec;
+  --wc-accent:     #ff5a1f;
+  --wc-lime:       #e6ff4d;
+  --wc-ease:       cubic-bezier(.16,.84,.32,1);
+  --wc-font:       -apple-system, "Segoe UI", Inter, Arial, sans-serif;
+  --wc-font-display: var(--wc-font); /* swap for a bolder display face if you have one */
+}
+
+.work-carousel-section{
+  background:var(--white);
+  color:var(--wc-ink);
+  font-family:var(--wc-font);
+  padding-block:80px;
+}
+
+.wc-wrap{
+  margin-inline:auto;
+  padding-inline:clamp(20px,4vw,64px);
+}
+
+/* ---- header row ---- */
+.wc-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1rem;
+}
+.wc-title{
+  font-family:var(--wc-font-display);
+  font-weight:900;
+  letter-spacing:-.03em;
+  line-height:.85;
+  font-size:clamp(56px,12vw,160px);
+  margin:0;
+}
+.wc-view-all{
+  flex-shrink:0;
+  width:104px;
+  height:104px;
+  border-radius:50%;
+  border:none;
+  background:var(--wc-lime);
+  color:var(--wc-ink);
+  font-family:var(--wc-font);
+  font-size:.8rem;
+  font-weight:700;
+  cursor:pointer;
+  transition:transform .35s var(--wc-ease);
+}
+.wc-view-all:hover{ transform:scale(1.06); }
+
+.wc-sub{
+  font-family:var(--wc-font-display);
+  font-weight:700;
+  font-size:1.2rem;
+  margin:1.2rem 0 0;
+}
+
+/* ---- carousel ---- */
+.wc-carousel{ margin-top:2.6rem; }
+
+.wc-viewport{
+  overflow-x:auto;
+  overflow-y:hidden;
+  scroll-snap-type:x mandatory;
+  scroll-behavior:smooth;
+  scrollbar-width:none;      /* Firefox */
+  -ms-overflow-style:none;   /* old Edge/IE */
+  cursor:grab;
+}
+.wc-viewport::-webkit-scrollbar{ display:none; }  /* Chrome/Safari */
+.wc-viewport:active{ cursor:grabbing; }
+.wc-viewport.is-dragging{ scroll-snap-type:none; scroll-behavior:auto; }
+
+.wc-track{
+  display:flex;
+  gap:1.2rem;
+  width:max-content;
+  padding-right:clamp(20px,4vw,64px);
+}
+
+.wc-slide{
+  position:relative;
+  display:block;
+  overflow:hidden;
+  scroll-snap-align:start;
+  flex:0 0 auto;
+  min-height:340px;
+  text-decoration:none;
+  color:inherit;
+  transition:transform .45s var(--wc-ease);
+}
+.wc-slide:hover{ transform:translateY(-4px); }
+.wc-slide--tall{ width:min(340px,70vw); }
+.wc-slide--wide{ width:min(560px,88vw); }
+
+.wc-slide-media{
+  position:absolute; inset:0;
+  background-size:cover !important;
+  background-position:center center !important;
+  transition:transform .6s var(--wc-ease);
+}
+.wc-slide:hover .wc-slide-media{ transform:scale(1.05); }
+
+.wc-slide-hover{
+  position:absolute; inset:0;
+  display:flex; align-items:flex-end;
+  padding:1.2rem;
+  background:linear-gradient(to top, rgba(0,0,0,.55), transparent 55%);
+  opacity:0;
+  transition:opacity .35s var(--wc-ease);
+}
+.wc-slide:hover .wc-slide-hover,
+.wc-slide:focus-visible .wc-slide-hover{ opacity:1; }
+.wc-slide-hover span{
+  color:#fff;
+  font-size:.8rem;
+  font-weight:600;
+  display:inline-flex;
+  align-items:center;
+  gap:.4rem;
+}
+.wc-slide-hover span::after{ content:"\2197"; }
+
+.wc-slide.is-active{ outline:2px solid var(--wc-ink); outline-offset:4px; }
+
+/* ---- caption + arrows ---- */
+.wc-caption{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  margin-top:1.6rem;
+  flex-wrap:wrap;
+  gap:1rem;
+}
+.wc-caption-link{ display:block; text-decoration:none; color:inherit; }
+.wc-caption-title{
+  font-family:var(--wc-font-display);
+  font-size:clamp(1.2rem,2vw,1.85rem);
+  font-weight:500;
+  margin:0;
+  transition:opacity .25s;
+}
+.wc-caption-desc{
+  font-size:1rem;
+  color:var(--wc-muted);
+  margin:.2rem 0 0;
+  transition:opacity .25s;
+}
+.wc-caption-link:hover .wc-caption-title{ opacity:.6; }
+
+.wc-arrows{ display:flex; gap:.6rem; }
+.wc-arrow{
+  width:44px; height:44px;
+  border-radius:50%;
+  border:1.5px solid var(--wc-ink);
+  background:none;
+  color:var(--wc-ink);
+  font-size:1rem;
+  font-weight:900;
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  transition:background .3s, color .3s;
+}
+.wc-arrow:hover{ background:var(--wc-ink); color:#fff; }
+
+/* ---- responsive ---- */
+@media (max-width:640px){
+  .wc-slide--tall{ width:78vw; }
+  .wc-slide--wide{ width:88vw; }
+  .wc-slide{ min-height:260px; }
+}
